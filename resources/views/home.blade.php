@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>DISTRO POINTSURF</title>
+    <title>SORUM YAMAHA</title>
     <meta
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
@@ -98,8 +98,33 @@
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
                     <li>
+                        <a href="{{ route('pelanggan.index') }}">
+                        <span class="sub-item">Pelanggan</span>
+                      </a>
+                    </li>
+                    <li>
                         <a href="{{ route('produk.index') }}">
                         <span class="sub-item">Produk</span>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pemasok.index') }}">
+                        <span class="sub-item">Pemasok</span>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('transaksi.index') }}">
+                        <span class="sub-item">Transaksi</span>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('inventaris.index') }}">
+                        <span class="sub-item">Inventaris</span>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('staff.index') }}">
+                        <span class="sub-item">Staff</span>
                       </a>
                     </li>
                   </ul>
