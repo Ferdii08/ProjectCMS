@@ -7,6 +7,7 @@ use App\Http\Controllers\PemasokController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\DetailTransaksiController;
 
 
 Route::get('/', function () {
@@ -31,3 +32,6 @@ Route::get('inventaris/{id}/delete', [InventarisController::class, 'delete'])->n
 ///Staff
 Route::resource('staff', StaffController::class);
 Route::get('staff/{id}/delete', [StaffController::class, 'delete'])->name('staff.delete');
+///DetailTransaksi
+Route::resource('detailtransaksi', DetailTransaksiController::class);
+Route::get('detailtransaksi/{id}/delete', [DetailTransaksiController::class, 'delete'])->name('detailtransaksi.delete');

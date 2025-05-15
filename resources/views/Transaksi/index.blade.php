@@ -5,7 +5,7 @@
 @section('content')
     <h1>Daftar Transaksi</h1>
 
-    <a href="{{ route('transaksi.create') }}">+ Tambah Transaksi Baru</a>
+    
 
     <table border="1" cellpadding="8" cellspacing="0" style="margin-top: 15px;">
         <thead>
@@ -39,4 +39,5 @@
             @endforelse
         </tbody>
     </table>
+    <a href="{{ route('transaksi.create') }}">+ Tambah Transaksi Baru</a>
 @endsection

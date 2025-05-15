@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
-use App\Models\Pelanggan; // Jika perlu menghubungkan transaksi dengan pelanggan
+use App\Models\Pelanggan; 
 
 class TransaksiController extends Controller
 {

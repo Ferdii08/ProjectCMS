@@ -11,7 +11,7 @@ class InventarisController extends Controller
     public function index()
     {
         return view('inventaris.index', [
-            'inventariss' => Inventaris::all()
+            'inventaris' => Inventaris::all()
         ]);
     }
 
@@ -84,6 +84,7 @@ class InventarisController extends Controller
         $inventaris = Inventaris::findOrFail($id);
         return view('inventaris.delete', compact('inventaris'));
     }
+    
 
     // Menghapus data inventaris
     public function destroy($id)

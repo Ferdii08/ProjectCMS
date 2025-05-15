@@ -5,36 +5,42 @@
 @section('content')
     <h2 style="margin-bottom: 16px;">Daftar Inventaris</h2>
 
-    <a href="{{ route('inventaris.create') }}" style="margin-bottom: 16px; display: inline-block;">+ Tambah Inventaris Baru</a>
-
-    @if($inventariss->isEmpty())
-        <p>Tidak ada data inventaris.</p>
-    @else
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
+    <table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Barang</th>
+                <th>Jumlah Stok</th>
+                <th>Lokasi Penyimpanan</th>
+                <th>Tanggal Masuk Stok</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($inventaris as $item)
                 <tr>
-                    <th>Nama Barang</th>
-                    <th>Jumlah Stok</th>
-                    <th>Lokasi</th>
-                    <th>Tanggal Masuk</th>
-                    <th>Aksi</th>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->jumlah_stok }}</td>
+                    <td>{{ $item->lokasi_penyimpanan }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->tanggal_masuk_stok)->format('d-m-Y') }}</td>
+                    <td>
+                        <a href="{{ route('inventaris.show', $item->id) }}">Lihat</a> |
+                        <a href="{{ route('inventaris.edit', $item->id) }}">Edit</a> |
+                        <form action="{{ route('inventaris.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Yakin ingin menghapus data inventaris ini?')">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($inventariss as $inventaris)
-                    <tr>
-                        <td>{{ $inventaris->nama_barang }}</td>
-                        <td>{{ $inventaris->jumlah_stok }}</td>
-                        <td>{{ $inventaris->lokasi_penyimpanan }}</td>
-                        <td>{{ $inventaris->tanggal_masuk_stok }}</td>
-                        <td>
-                            <a href="{{ route('inventaris.show', $inventaris->id) }}">Lihat</a> |
-                            <a href="{{ route('inventaris.edit', $inventaris->id) }}">Edit</a> |
-                            <a href="{{ route('inventaris.delete', $inventaris->id) }}">Hapus</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+            @empty
+                <tr>
+                    <td colspan="6">Tidak ada data inventaris.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <a href="{{ route('inventaris.create') }}" style="display: inline-block; margin-top: 20px;">+ Tambah Inventaris</a>
 @endsection

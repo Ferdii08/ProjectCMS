@@ -127,129 +127,15 @@
                         <span class="sub-item">Staff</span>
                       </a>
                     </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-th-list"></i>
-                  <p>Sidebar Layouts</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="sidebarLayouts">
-                  <ul class="nav nav-collapse">
                     <li>
-                      <a href="sidebar-style-2.html">
-                        <span class="sub-item">Sidebar Style 2</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="icon-menu.html">
-                        <span class="sub-item">Icon Menu</span>
+                        <a href="{{ route('detailtransaksi.index') }}">
+                        <span class="sub-item">Detail Transaksi</span>
                       </a>
                     </li>
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#forms">
-                  <i class="fas fa-pen-square"></i>
-                  <p>Forms</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="forms">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="forms/forms.html">
-                        <span class="sub-item">Basic Form</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tables">
-                  <i class="fas fa-table"></i>
-                  <p>Tables</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="tables/tables.html">
-                        <span class="sub-item">Basic Table</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#maps">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <p>Maps</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="maps">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="maps/googlemaps.html">
-                        <span class="sub-item">Google Maps</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="maps/jsvectormap.html">
-                        <span class="sub-item">Jsvectormap</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#charts">
-                  <i class="far fa-chart-bar"></i>
-                  <p>Charts</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="charts">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="charts/charts.html">
-                        <span class="sub-item">Chart Js</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="charts/sparkline.html">
-                        <span class="sub-item">Sparkline</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a href="widgets.html">
-                  <i class="fas fa-desktop"></i>
-                  <p>Widgets</p>
-                  <span class="badge badge-success">4</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../documentation/index.html">
-                  <i class="fas fa-file"></i>
-                  <p>Documentation</p>
-                  <span class="badge badge-secondary">1</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#submenu">
-                  <i class="fas fa-bars"></i>
-                  <p>Menu Levels</p>
-                  <span class="caret"></span>
-                </a>
+              
                 <div class="collapse" id="submenu">
                   <ul class="nav nav-collapse">
                     <li>
@@ -450,12 +336,7 @@
                                 src="assets/img/talha.jpg"
                                 alt="Img Profile"
                               />
-                            </div>
-                            <div class="notif-content">
-                              <span class="subject">Talha</span>
-                              <span class="block"> Hi, Apa Kabar ? </span>
-                              <span class="time">17 minutes ago</span>
-                            </div>
+                            
                           </a>
                         </div>
                       </div>
@@ -640,7 +521,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">Ferdi</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -691,7 +572,7 @@
             >
               <div>
                 <h3 class="fw-bold mb-3">Dashboard</h3>
-                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
+                <h6 class="op-7 mb-2">SISTEM PENJUALAN SUKU CADANG SEPEDA MOTOR</h6>
               </div>
               <div class="ms-md-auto py-2 py-md-0">
                 <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
@@ -700,7 +581,7 @@
             </div>
             <div class="row">
               <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
+                       <div class="card card-stats card-round">
                   <div class="card-body">
                     <div class="row align-items-center">
                       <div class="col-icon">
@@ -712,7 +593,7 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Visitors</p>
+                          <p class="card-category">Pelanggan</p>
                           <h4 class="card-title">1,294</h4>
                         </div>
                       </div>
@@ -733,7 +614,7 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Subscribers</p>
+                          <p class="card-category">Pemasok</p>
                           <h4 class="card-title">1303</h4>
                         </div>
                       </div>
@@ -754,8 +635,8 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Sales</p>
-                          <h4 class="card-title">$ 1,345</h4>
+                          <p class="card-category">Transaksi</p>
+                          <h4 class="card-title">1,345</h4>
                         </div>
                       </div>
                     </div>
@@ -775,7 +656,7 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Order</p>
+                          <p class="card-category">Detail Transaksi</p>
                           <h4 class="card-title">576</h4>
                         </div>
                       </div>
@@ -784,55 +665,8 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="card card-round">
-                  <div class="card-header">
-                    <div class="card-head-row">
-                      <div class="card-title">User Statistics</div>
-                      <div class="card-tools">
-                        <a
-                          href="#"
-                          class="btn btn-label-success btn-round btn-sm me-2"
-                        >
-                          <span class="btn-label">
-                            <i class="fa fa-pencil"></i>
-                          </span>
-                          Export
-                        </a>
-                        <a href="#" class="btn btn-label-info btn-round btn-sm">
-                          <span class="btn-label">
-                            <i class="fa fa-print"></i>
-                          </span>
-                          Print
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart-container" style="min-height: 375px">
-                      <canvas id="statisticsChart"></canvas>
-                    </div>
-                    <div id="myChartLegend"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card card-primary card-round">
-                  <div class="card-header">
-                    <div class="card-head-row">
-                      <div class="card-title">Daily Sales</div>
-                      <div class="card-tools">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-sm btn-label-light dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            Export
+
+                  
                           </button>
                           <div
                             class="dropdown-menu"
