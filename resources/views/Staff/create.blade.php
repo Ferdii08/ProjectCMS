@@ -10,12 +10,12 @@
 
         <label>Nama: <input type="text" name="nama" value="{{ old('nama') }}" required></label><br><br>
         @error('nama')
-            <span style="color: red;">{{ $message }}</span><br><br>
+            <span style="color: red;">{{ $message }}</span>
         @enderror
 
         <label>Posisi: <input type="text" name="posisi" value="{{ old('posisi') }}" required></label><br><br>
         @error('posisi')
-            <span style="color: red;">{{ $message }}</span><br><br>
+            <span style="color: red;">{{ $message }}</span>
         @enderror
 
         <label>Jabatan: <input type="text" name="jabatan" value="{{ old('jabatan') }}" required></label><br><br>

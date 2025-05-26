@@ -14,6 +14,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/test-notif', function () {
+    return redirect()->route('detailtransaksi.index')->with('success', 'Notifikasi test berhasil!');
+});
+
+
 ///Pelanggan
 Route::resource('pelanggan', PelangganController::class);
 Route::get('/pelanggan/{id}/delete', [PelangganController::class, 'delete'])->name('pelanggan.delete');

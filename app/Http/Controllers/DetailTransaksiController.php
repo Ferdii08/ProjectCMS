@@ -57,24 +57,19 @@ class DetailTransaksiController extends Controller
 
     // Memproses update data detail transaksi
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'transaksi_id' => 'required|integer',
-            'produk_id' => 'required|integer',
-            'jumlah' => 'required|integer|min:1',
-            'harga_satuan' => 'required|numeric|min:0',
-        ]);
+{
+    $request->validate([
+        'transaksi_id' => 'required|exists:transaksis,id',
+        'produk_id' => 'required|exists:produks,id',
+        'jumlah' => 'required|numeric|min:1',
+        'harga_satuan' => 'required|numeric|min:0',
+    ]);
 
-        $detailtransaksi = DetailTransaksi::findOrFail($id);
+    $detail = DetailTransaksi::findOrFail($id);
+    $detail->update($request->all());
 
-        $detailtransaksi->update([
-            'transaksi_id' => $request->input('transaksi_id'),
-            'produk_id' => $request->input('produk_id'),
-            'jumlah' => $request->input('jumlah'),
-            'harga_satuan' => $request->input('harga_satuan'),
-        ]);
-
-        return redirect()->route('detailtransaksi.show', $id);
+    return redirect()->route('detailtransaksi.index')
+        ->with('success', 'Data berhasil ditambahkan.');
     }
 
     // Menampilkan halaman konfirmasi hapus

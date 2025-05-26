@@ -80,17 +80,17 @@ class ProdukController extends Controller
   // Menampilkan halaman konfirmasi hapus transaksi
 public function delete($id)
 {
-    $transaksi = Transaksi::findOrFail($id);
-    return view('transaksi.delete', compact('transaksi'));
+    $produk = Produk::findOrFail($id);
+    return view('produk.delete', compact('produk'));
 }
 
 // Menghapus data transaksi
 public function destroy($id)
 {
-    $transaksi = Transaksi::findOrFail($id);
-    $transaksi->delete();
+    $produk = Produk::findOrFail($id);
+    $produk->delete();
 
-    return redirect()->route('transaksi.index');
+    return redirect()->route('produk.index');
 }
 
 }

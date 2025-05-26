@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
+use Illuminate\Support\Facades\Validator;
 
 class PelangganController extends Controller
 {
@@ -23,8 +23,30 @@ class PelangganController extends Controller
 
     // Menyimpan data pelanggan baru
     public function store(Request $request)
-    {
-        $request->validate([
+    
+        {
+    $messages = [
+        'nama.required' => 'Nama wajib diisi.',
+        'nama.string' => 'Nama harus berupa teks.',
+        'nama.max' => 'Nama maksimal :max karakter.',
+
+        'no_telepon.required' => 'Nomor telepon wajib diisi.',
+        'no_telepon.string' => 'Nomor telepon harus berupa teks.',
+        'no_telepon.max' => 'Nomor telepon maksimal :max karakter.',
+
+        'alamat.required' => 'Alamat wajib diisi.',
+        'alamat.string' => 'Alamat harus berupa teks.',
+        'alamat.max' => 'Alamat maksimal :max karakter.',
+
+        'email.required' => 'Email wajib diisi.',
+        'email.email' => 'Format email tidak valid.',
+        'email.max' => 'Email maksimal :max karakter.',
+        'email.unique' => 'Email sudah digunakan oleh pelanggan lain.',
+    ];
+        
+        $request->validate
+        
+        ([
             'nama' => 'required|string|max:255',
             'no_telepon' => 'required|string|max:20',
             'alamat' => 'required|string|max:255',
@@ -38,7 +60,17 @@ class PelangganController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('pelanggan.index');
+        
+
+       return redirect()->route('pelanggan.index')
+                     ->with('success', 'Data berhasil di tambahkan');
+          return redirect()->route('pelanggan.index')
+                         ->with('success', 'Data berhasil diupdate');
+    {
+        return redirect()->route('pelanggan.edit', $id)
+                         ->with('error', 'Data gagal diupdate: ' . $e->getMessage());
+    }
+                     
     }
 
     // Menampilkan detail pelanggan
@@ -74,7 +106,8 @@ class PelangganController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('pelanggan.show', $id);
+        return redirect()->route('pelanggan.index')
+                     ->with('success', 'Data berhasil di Update');
     }
 
     // Menampilkan halaman konfirmasi hapus

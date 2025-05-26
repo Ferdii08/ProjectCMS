@@ -3,6 +3,11 @@
 @section('title', 'Tambah Pelanggan')
 
 @section('content')
+    @error('email')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
+
     <h2 style="margin-bottom: 16px;">Tambah Pelanggan Baru</h2>
 
     <form method="POST" action="{{ route('pelanggan.store') }}" style="line-height: 2;">

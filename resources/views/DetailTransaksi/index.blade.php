@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <h2>Daftar Detail Transaksi</h2>
 
-    
+    {{-- ✅ Notifikasi sukses di sini --}}
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
@@ -39,8 +46,8 @@
                 </tr>
             @endforelse
         </tbody>
-        
     </table>
+
     <a href="{{ route('detailtransaksi.create') }}">+ Tambah Data</a>
 </div>
 @endsection
