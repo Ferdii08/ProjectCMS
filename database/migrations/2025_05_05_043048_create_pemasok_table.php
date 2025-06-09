@@ -16,11 +16,15 @@ return new class extends Migration
             $table->string('nama');
             $table->string('kategori');
             $table->integer('harga');
-            $table->integer('stok'); // Pastikan kolom stok ada di sini
+            $table->integer('stok');
+            $table->unsignedBigInteger('pemasok_id'); // foreign key
+
             $table->timestamps();
+
+            // Relasi foreign key ke tabel pemasok
+            $table->foreign('pemasok_id')->references('id')->on('pemasoks')->onDelete('cascade');
         });
     }
-    
 
     /**
      * Reverse the migrations.

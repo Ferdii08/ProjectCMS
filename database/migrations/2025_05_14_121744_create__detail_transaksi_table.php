@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
+        
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id(); // Kolom id otomatis
             $table->unsignedBigInteger('transaksi_id'); // Foreign key untuk transaksi_id

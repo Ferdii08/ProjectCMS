@@ -22,6 +22,11 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
+protected $routeMiddleware = [
+    // Middleware bawaan Laravel...
+    'auth' => \App\Http\Middleware\Authenticate::class,
+    'check.age' => \App\Http\Middleware\CheckAge::class,
+];
 
     /**
      * The application's route middleware groups.

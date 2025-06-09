@@ -18,6 +18,10 @@ Route::get('/test-notif', function () {
     return redirect()->route('detailtransaksi.index')->with('success', 'Notifikasi test berhasil!');
 });
 
+Route::get('/pendaftaran-ktp', function () {
+    return 'Selamat datang di halaman Pendaftaran KTP Online!';
+})->middleware('check.age');
+
 
 ///Pelanggan
 Route::resource('pelanggan', PelangganController::class);
