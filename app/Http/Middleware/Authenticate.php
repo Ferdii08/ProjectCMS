@@ -10,9 +10,10 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
 {
     if (! $request->expectsJson()) {
-        return route('login'); // atau bisa diganti dengan url('/custom-login')
+        return url('/custom-login'); // ganti sesuai URL login kamu
     }
 }
+
 
     /**
      * Get the path the user should be redirected to when they are not authenticated.
