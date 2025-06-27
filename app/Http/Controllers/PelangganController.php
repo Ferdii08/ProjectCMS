@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class PelangganController extends Controller
 {
-    // Menampilkan daftar semua pelanggan
     public function index(Request $request)
     {
         $query = Pelanggan::query();
@@ -22,45 +23,35 @@ class PelangganController extends Controller
         return view('pelanggan.index', compact('pelanggans'));
     }
 
-    // Menampilkan form tambah pelanggan
     public function create()
     {
         return view('pelanggan.create');
     }
 
-    // Menyimpan data pelanggan baru
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama' => 'required|string|max:255',
-            'no_telepon' => 'required|string|max:20',
-            'alamat' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:pelanggans,email',
-        ], [
-            'nama.required' => 'Nama wajib diisi.',
-            'nama.string' => 'Nama harus berupa teks.',
-            'nama.max' => 'Nama maksimal :max karakter.',
+        try {
+            $validated = $request->validate([
+                'nama' => 'required|string|max:255',
+                'no_telepon' => 'required|string|max:20',
+                'alamat' => 'required|string|max:255',
+                'email' => 'required|email|max:255|unique:pelanggans,email',
+            ]);
 
-            'no_telepon.required' => 'Nomor telepon wajib diisi.',
-            'no_telepon.string' => 'Nomor telepon harus berupa teks.',
-            'no_telepon.max' => 'Nomor telepon maksimal :max karakter.',
+            Pelanggan::create($validated);
 
-            'alamat.required' => 'Alamat wajib diisi.',
-            'alamat.string' => 'Alamat harus berupa teks.',
-            'alamat.max' => 'Alamat maksimal :max karakter.',
+            return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil ditambahkan!');
+        } catch (Throwable $e) {
+            Log::error('Gagal menambahkan pelanggan', [
+                'message' => $e->getMessage(),
+                'input' => $request->all(),
+                'trace' => $e->getTraceAsString(),
+            ]);
 
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.max' => 'Email maksimal :max karakter.',
-            'email.unique' => 'Email sudah digunakan oleh pelanggan lain.',
-        ]);
-
-        Pelanggan::create($validated);
-
-        return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil ditambahkan!');
+            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan saat menyimpan data.');
+        }
     }
 
-    // Menampilkan detail pelanggan
     public function show($id)
     {
         try {
@@ -71,7 +62,6 @@ class PelangganController extends Controller
         }
     }
 
-    // Menampilkan form edit pelanggan
     public function edit($id)
     {
         try {
@@ -82,7 +72,6 @@ class PelangganController extends Controller
         }
     }
 
-    // Memproses update data pelanggan
     public function update(Request $request, $id)
     {
         try {
@@ -93,13 +82,6 @@ class PelangganController extends Controller
                 'no_telepon' => 'required|string|max:20',
                 'alamat' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:pelanggans,email,' . $id,
-            ], [
-                'nama.required' => 'Nama wajib diisi.',
-                'no_telepon.required' => 'Nomor telepon wajib diisi.',
-                'alamat.required' => 'Alamat wajib diisi.',
-                'email.required' => 'Email wajib diisi.',
-                'email.email' => 'Format email tidak valid.',
-                'email.unique' => 'Email sudah digunakan oleh pelanggan lain.',
             ]);
 
             $pelanggan->update($validated);
@@ -107,10 +89,17 @@ class PelangganController extends Controller
             return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil diperbarui!');
         } catch (ModelNotFoundException $e) {
             return redirect()->route('pelanggan.index')->with('error', 'Data pelanggan tidak ditemukan.');
+        } catch (Throwable $e) {
+            Log::error('Gagal memperbarui pelanggan', [
+                'message' => $e->getMessage(),
+                'input' => $request->all(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return redirect()->back()->withInput()->with('error', 'Terjadi kesalahan saat memperbarui data.');
         }
     }
 
-    // Menampilkan halaman konfirmasi hapus
     public function delete($id)
     {
         try {
@@ -121,7 +110,6 @@ class PelangganController extends Controller
         }
     }
 
-    // Menghapus data pelanggan
     public function destroy($id)
     {
         try {
@@ -131,6 +119,14 @@ class PelangganController extends Controller
             return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil dihapus!');
         } catch (ModelNotFoundException $e) {
             return redirect()->route('pelanggan.index')->with('error', 'Data pelanggan tidak ditemukan.');
+        } catch (Throwable $e) {
+            Log::error('Gagal menghapus pelanggan', [
+                'id' => $id,
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return redirect()->route('pelanggan.index')->with('error', 'Terjadi kesalahan saat menghapus data.');
         }
     }
 }
