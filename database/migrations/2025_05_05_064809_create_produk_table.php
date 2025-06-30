@@ -1,24 +1,24 @@
 <?php
 
-// database/migrations/2025_05_01_000000_create_pemasoks_table.php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void {
-        Schema::create('pemasoks', function (Blueprint $table) {
-            $table->id();
+    public function up()
+    {
+        Schema::create('produks', function (Blueprint $table) {
+            $table->integer('id')->primary(); // Karena di model id bukan auto increment
             $table->string('nama');
-            $table->string('alamat')->nullable();
-            $table->string('telepon')->nullable();
+            $table->string('kategori');
+            $table->decimal('harga', 10, 2);
+            $table->integer('stok');
             $table->timestamps();
         });
     }
 
-    public function down(): void {
-        Schema::dropIfExists('pemasoks');
+    public function down()
+    {
+        Schema::dropIfExists('produks');
     }
 };
-

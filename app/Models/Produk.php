@@ -9,21 +9,16 @@ class Produk extends Model
 {
     use HasFactory;
 
-    protected $table = 'produks'; 
+    protected $table = 'produks';
+
     protected $fillable = ['nama', 'kategori', 'harga', 'stok'];
 
-    protected $primaryKey = 'id'; 
-
-    public $incrementing = false; 
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     public static function getAll()
     {
-        return Pelanggan::all();
-    }
-
-    public static function find($id)
-    {
-        return Pelanggan::where('id', $id)->first();
+        return self::all();
     }
 }

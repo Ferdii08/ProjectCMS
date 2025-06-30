@@ -15,7 +15,7 @@
 
         <label>No. Telepon: <input type="text" name="no_telepon" required></label><br>
 
-        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Email:</label><input type="email" name="email" required>
 
         <button type="submit" style="margin-top: 10px;">Simpan</button>
     </form>

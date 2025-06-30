@@ -27,7 +27,9 @@ class PemasokController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
-        Pemasok::create($request->only(['nama_perusahaan', 'alamat', 'no_telepon', 'email']));
+        Pemasok::create($request->only([
+            'nama_perusahaan', 'alamat', 'no_telepon', 'email'
+        ]));
 
         return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil ditambahkan.');
     }
@@ -54,7 +56,9 @@ class PemasokController extends Controller
         ]);
 
         $pemasok = Pemasok::findOrFail($id);
-        $pemasok->update($request->only(['nama_perusahaan', 'alamat', 'no_telepon', 'email']));
+        $pemasok->update($request->only([
+            'nama_perusahaan', 'alamat', 'no_telepon', 'email'
+        ]));
 
         return redirect()->route('pemasok.index')->with('success', 'Data pemasok berhasil diperbarui.');
     }
@@ -65,12 +69,11 @@ class PemasokController extends Controller
         return view('pemasok.delete', compact('pemasok'));
     }
 
-    
     public function destroy($id)
     {
-        $pemasoks = Pemasok::findOrFail($id);
-        $pemasoks->delete();
+        $pemasok = Pemasok::findOrFail($id);
+        $pemasok->delete();
 
-        return redirect()->route('pemasok.index');
+        return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil dihapus.');
     }
 }
