@@ -11,7 +11,7 @@ class Produk extends Model
 
     protected $table = 'produks';
 
-    protected $fillable = ['nama', 'kategori', 'harga', 'stok'];
+    protected $fillable = ['id', 'nama', 'kategori', 'harga', 'stok'];
 
     protected $primaryKey = 'id';
     public $incrementing = true;

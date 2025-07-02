@@ -31,7 +31,12 @@ class ProdukController extends Controller
             'stok' => 'required|integer',
         ]);
 
+        // Generate id baru (max+1)
+        $maxId = Produk::max('id');
+        $newId = $maxId ? $maxId + 1 : 1;
+
         Produk::create([
+            'id' => $newId,
             'nama' => $request->input('nama'),
             'kategori' => $request->input('kategori'),
             'harga' => $request->input('harga'),

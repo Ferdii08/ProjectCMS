@@ -3,47 +3,50 @@
 @section('title', 'Daftar Staff')
 
 @section('content')
-    <h2 style="margin-bottom: 16px;">Daftar Staff</h2>
-
-    
-    <table border="1" cellpadding="10" cellspacing="0">
-    <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Posisi</th>
-                <th>Jabatan</th>
-                <th>Nomor Telepon</th>
-                <th>Email</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($staffs as $staff)
+<div class="card shadow-sm">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Daftar Staff</h4>
+        <a href="{{ route('staff.create') }}" class="btn btn-success btn-sm">+ Tambah Staff</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
                 <tr>
-                    <td>{{ $staff->id }}</td>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Posisi</th>
+                    <th>Jabatan</th>
+                    <th>Nomor Telepon</th>
+                    <th>Email</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($staffs as $staff)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $staff->nama }}</td>
                     <td>{{ $staff->posisi }}</td>
                     <td>{{ $staff->jabatan }}</td>
                     <td>{{ $staff->no_telepon }}</td>
                     <td>{{ $staff->email }}</td>
                     <td>
-                        <a href="{{ route('staff.show', $staff->id) }}">Lihat</a> |
-                        <a href="{{ route('staff.edit', $staff->id) }}">Edit</a> |
-                        <form action="{{ route('staff.destroy', $staff->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('staff.show', $staff->id) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('staff.destroy', $staff->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Yakin ingin menghapus staff ini?')">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus staff ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
-            @empty
+                @empty
                 <tr>
-                    <td colspan="7" style="text-align: center;">Belum ada data staff.</td>
+                    <td colspan="7" class="text-center">Belum ada data staff.</td>
                 </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    <a href="{{ route('staff.create') }}" style="display: inline-block; margin-top: 20px;">+ Tambah Staff</a>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection

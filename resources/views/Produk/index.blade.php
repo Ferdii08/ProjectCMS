@@ -3,44 +3,48 @@
 @section('title', 'Daftar Produk')
 
 @section('content')
-    <h2 style="margin-bottom: 16px;">Daftar Produk</h2>
-
-    <table border="1" cellpadding="10" cellspacing="0">
-    <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Kategori</th>
-                <th>Harga</th>
-                <th>Stok</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($produks as $produk)
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Daftar Produk</h4>
+        <a href="{{ route('produk.create') }}" class="btn btn-success btn-sm">+ Tambah Produk</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-info">
                 <tr>
-                    <td>{{ $produk->id }}</td>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($produks as $produk)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $produk->nama }}</td>
                     <td>{{ $produk->kategori }}</td>
                     <td>Rp{{ number_format($produk->harga, 2, ',', '.') }}</td>
                     <td>{{ $produk->stok }}</td>
                     <td>
-                        <a href="{{ route('produk.show', $produk->id) }}">Lihat</a> |
-                        <a href="{{ route('produk.edit', $produk->id) }}">Edit</a> |
-                        <form action="{{ route('produk.destroy', $produk->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('produk.show', $produk->id) }}" class="btn btn-info btn-sm">Lihat</a>
+                        <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('produk.destroy', $produk->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
-            @empty
+                @empty
                 <tr>
-                    <td colspan="6">Tidak ada produk.</td>
+                    <td colspan="6" class="text-center">Tidak ada produk.</td>
                 </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    <a href="{{ route('produk.create') }}" style="display: inline-block; margin-top: 20px;">+ Tambah Produk</a>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection

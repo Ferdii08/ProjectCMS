@@ -9,6 +9,7 @@ use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/upload', [ImageController::class, 'create']);
 Route::post('/upload', [ImageController::class, 'store'])->name('image.upload');
@@ -18,9 +19,7 @@ Route::get('/pendaftaran-ktp', function () {
     return 'Selamat datang di halaman Pendaftaran KTP Online!';
 })->middleware('check.age');
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/test-notif', function () {
     return redirect()->route('detailtransaksi.index')->with('success', 'Notifikasi test berhasil!');
