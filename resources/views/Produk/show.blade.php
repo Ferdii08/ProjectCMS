@@ -3,19 +3,32 @@
 @section('title', 'Detail Produk')
 
 @section('content')
-    <h2>Detail Produk</h2>
-
-    <p><strong>Nama:</strong> {{ $produk->nama }}</p>
-    <p><strong>Kategori:</strong> {{ $produk->kategori }}</p>
-    <p><strong>Harga:</strong> Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
-    <p><strong>Stok:</strong> {{ $produk->stok }}</p>
-
-    <br>
-
-    <a href="{{ route('produk.edit', $produk->id) }}">✏️ Edit</a> |
-    <a href="{{ route('produk.delete', $produk->id) }}">🗑️ Hapus</a>
-
-    <br><br>
-
-    <a href="{{ route('produk.index') }}">← Kembali ke daftar</a>
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Detail Produk</h4>
+        <a href="{{ route('produk.index') }}" class="btn btn-light btn-sm">← Kembali ke daftar</a>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <strong>Nama:</strong> {{ $produk->nama }}
+        </div>
+        <div class="mb-3">
+            <strong>Kategori:</strong> {{ $produk->kategori }}
+        </div>
+        <div class="mb-3">
+            <strong>Harga:</strong> Rp {{ number_format($produk->harga, 0, ',', '.') }}
+        </div>
+        <div class="mb-3">
+            <strong>Stok:</strong> {{ $produk->stok }}
+        </div>
+        <div class="mt-4">
+            <a href="{{ route('produk.edit', $produk->id) }}" class="btn btn-warning btn-sm">✏️ Edit</a>
+            <form action="{{ route('produk.destroy', $produk->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus produk ini?')">🗑️ Hapus</button>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

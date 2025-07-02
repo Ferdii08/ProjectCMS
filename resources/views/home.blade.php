@@ -639,7 +639,88 @@
                   </div>
                 </div>
               </div>
-              
+             
+            <div class="row mt-4 g-4">
+              <div class="col-md-6">
+                <div class="card shadow-lg border-0" style="border-radius: 18px;">
+                  <div class="card-header bg-danger text-white d-flex align-items-center" style="border-radius: 18px 18px 0 0;">
+                    <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                    <h5 class="mb-0">Inventaris Habis</h5>
+                  </div>
+                  <div class="card-body" style="min-height: 180px;">
+                    @php
+                      $inventarisHabis = \App\Models\Inventaris::where('jumlah_stok', 0)->get();
+                    @endphp
+                    @if($inventarisHabis->count() > 0)
+                      <ul class="mb-0 ps-1" style="list-style: none;">
+                        @foreach($inventarisHabis as $item)
+                          <li class="mb-2 d-flex align-items-center">
+                            <i class="fas fa-times-circle text-danger me-2"></i>
+                            <span>{{ $item->nama_barang }} <span class="text-muted">(Lokasi: {{ $item->lokasi_penyimpanan }})</span></span>
+                          </li>
+                        @endforeach
+                      </ul>
+                    @else
+                      <div class="text-center text-muted py-4">
+                        <i class="fas fa-check-circle fa-2x mb-2 text-success"></i><br>
+                        Tidak ada suku cadang yang habis.
+                      </div>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow-lg border-0" style="border-radius: 18px;">
+                  <div class="card-header bg-success text-white d-flex align-items-center" style="border-radius: 18px 18px 0 0;">
+                    <i class="fas fa-cogs fa-2x me-3"></i>
+                    <h5 class="mb-0">Inventaris Tersedia</h5>
+                  </div>
+                  <div class="card-body" style="min-height: 180px;">
+                    @php
+                      $inventarisTersedia = \App\Models\Inventaris::where('jumlah_stok', '>', 0)->get();
+                    @endphp
+                    @if($inventarisTersedia->count() > 0)
+                      <ul class="mb-0 ps-1" style="list-style: none;">
+                        @foreach($inventarisTersedia as $item)
+                          <li class="mb-2 d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>{{ $item->nama_barang }} <span class="text-muted">(Stok: {{ $item->jumlah_stok }}, Lokasi: {{ $item->lokasi_penyimpanan }})</span></span>
+                          </li>
+                        @endforeach
+                      </ul>
+                    @else
+                      <div class="text-center text-muted py-4">
+                        <i class="fas fa-times-circle fa-2x mb-2 text-danger"></i><br>
+                        Tidak ada suku cadang tersedia.
+                      </div>
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Statistik Diagram -->
+            <div class="row mt-4 g-4">
+              <div class="col-md-6">
+                <div class="card shadow border-0">
+                  <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Statistik Entitas</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="barChartEntitas" height="180"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card shadow border-0">
+                  <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Proporsi Inventaris</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="pieChartInventaris" height="180"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
       <!-- End Custom template -->
     </div>
     <!--   Core JS Files   -->
@@ -679,5 +760,61 @@
     <script src="assets/js/setting-demo.js"></script>
     <script src="assets/js/demo.js"></script>
     <script>
+      // Statistik Entitas (Bar Chart)
+      var ctxBar = document.getElementById('barChartEntitas').getContext('2d');
+      var barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['Pelanggan', 'Pemasok', 'Produk', 'Transaksi', 'Inventaris', 'Staff'],
+          datasets: [{
+            label: 'Jumlah',
+            data: [
+              {{ $jumlahPelanggan ?? 0 }},
+              {{ $jumlahPemasok ?? 0 }},
+              {{ $jumlahProduk ?? 0 }},
+              {{ $jumlahTransaksi ?? 0 }},
+              {{ $jumlahInventaris ?? 0 }},
+              {{ $jumlahStaff ?? 0 }}
+            ],
+            backgroundColor: [
+              '#007bff', '#17a2b8', '#28a745', '#ffc107', '#dc3545', '#6c757d'
+            ]
+          }]
+        },
+        options: {
+          indexAxis: 'y', // Mengubah ke horizontal bar chart
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: { display: false }
+          },
+          scales: {
+            x: { beginAtZero: true }
+          }
+        }
+      });
+      // Statistik Inventaris (Pie Chart)
+      var ctxPie = document.getElementById('pieChartInventaris').getContext('2d');
+      var pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+          labels: ['Stok Habis', 'Stok Tersedia'],
+          datasets: [{
+            data: [
+              {{ $inventarisHabis->count() ?? 0 }},
+              {{ $inventarisTersedia->count() ?? 0 }}
+            ],
+            backgroundColor: ['#dc3545', '#28a745']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: false }
+          }
+        }
+      });
+    </script>
   </body>
 </html>

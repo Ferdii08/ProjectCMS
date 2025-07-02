@@ -31,7 +31,7 @@ class PemasokController extends Controller
             'nama_perusahaan', 'alamat', 'no_telepon', 'email'
         ]));
 
-        return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil ditambahkan.');
+        return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil ditambahkan!');
     }
 
     public function show($id)
@@ -60,7 +60,7 @@ class PemasokController extends Controller
             'nama_perusahaan', 'alamat', 'no_telepon', 'email'
         ]));
 
-        return redirect()->route('pemasok.index')->with('success', 'Data pemasok berhasil diperbarui.');
+        return redirect()->route('pemasok.index')->with('success', 'Data pemasok berhasil diperbarui!');
     }
 
     public function delete($id)
@@ -74,6 +74,6 @@ class PemasokController extends Controller
         $pemasok = Pemasok::findOrFail($id);
         $pemasok->delete();
 
-        return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil dihapus.');
+        return redirect()->route('pemasok.index')->with('success', 'Pemasok berhasil dihapus!');
     }
 }

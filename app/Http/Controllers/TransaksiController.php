@@ -29,11 +29,10 @@ class TransaksiController extends Controller
             'tanggal_transaksi' => 'required|date',
             'total_harga' => 'required|numeric|min:0',
             'metode_pembayaran' => 'required|string',
-            'daftar_produk' => 'required|string', // Bisa disesuaikan dengan format JSON jika diperlukan
+            'daftar_produk' => 'required|string',
             'status_pengiriman' => 'required|string',
         ]);
 
-        // Menyimpan transaksi
         Transaksi::create([
             'tanggal_transaksi' => $request->input('tanggal_transaksi'),
             'total_harga' => $request->input('total_harga'),
@@ -42,7 +41,7 @@ class TransaksiController extends Controller
             'status_pengiriman' => $request->input('status_pengiriman'),
         ]);
 
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil ditambahkan!');
     }
 
     // Menampilkan detail transaksi
@@ -80,7 +79,7 @@ class TransaksiController extends Controller
             'status_pengiriman' => $request->input('status_pengiriman'),
         ]);
 
-        return redirect()->route('transaksi.show', $id);
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbarui!');
     }
 
     // Menampilkan halaman konfirmasi hapus
@@ -95,6 +94,6 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
 
-        return redirect()->route('transaksi.index');
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil dihapus!');
     }
 }

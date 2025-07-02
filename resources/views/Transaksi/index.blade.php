@@ -4,13 +4,20 @@
 
 @section('content')
 <div class="card shadow-sm">
-    <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Daftar Transaksi</h4>
         <a href="{{ route('transaksi.create') }}" class="btn btn-success btn-sm">+ Tambah Transaksi</a>
     </div>
     <div class="card-body">
+        {{-- Notifikasi sukses dan error --}}
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
         <table class="table table-bordered table-hover align-middle">
-            <thead class="table-warning">
+            <thead class="table-primary">
                 <tr>
                     <th>No</th>
                     <th>Tanggal</th>

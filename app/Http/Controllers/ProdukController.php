@@ -43,7 +43,7 @@ class ProdukController extends Controller
             'stok' => $request->input('stok'),
         ]);
 
-        return redirect()->route('produk.index');
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     // Menampilkan detail produk
@@ -79,7 +79,7 @@ class ProdukController extends Controller
             'stok' => $request->input('stok'),
         ]);
 
-        return redirect()->route('produk.show', $id);
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     // Menampilkan halaman konfirmasi hapus produk
@@ -95,6 +95,6 @@ class ProdukController extends Controller
         $produk = Produk::findOrFail($id);
         $produk->delete();
 
-        return redirect()->route('produk.index');
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus!');
     }
 }

@@ -3,22 +3,32 @@
 @section('title', 'Tambah Pemasok')
 
 @section('content')
-    <h2 style="margin-bottom: 16px;">Tambah Pemasok Baru</h2>
-
-    <form method="POST" action="{{ route('pemasok.store') }}" style="line-height: 2;">
-        @csrf
-        <label>Nama Perusahaan: <input type="text" name="nama_perusahaan" required></label><br>
-
-        <label>Alamat:<br>
-            <textarea name="alamat" rows="3" style="width: 300px;" required></textarea>
-        </label><br>
-
-        <label>No. Telepon: <input type="text" name="no_telepon" required></label><br>
-
-        <label>Email:</label><input type="email" name="email" required>
-
-        <button type="submit" style="margin-top: 10px;">Simpan</button>
-    </form>
-
-    <a href="{{ route('pemasok.index') }}" style="display: inline-block; margin-top: 20px;">← Kembali ke daftar pemasok</a>
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Tambah Pemasok Baru</h4>
+        <a href="{{ route('pemasok.index') }}" class="btn btn-light btn-sm">← Kembali ke daftar pemasok</a>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ route('pemasok.store') }}">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label">Nama Perusahaan</label>
+                <input type="text" name="nama_perusahaan" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Alamat</label>
+                <textarea name="alamat" rows="3" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">No. Telepon</label>
+                <input type="text" name="no_telepon" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Simpan</button>
+        </form>
+    </div>
+</div>
 @endsection

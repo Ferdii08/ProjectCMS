@@ -38,7 +38,7 @@ class InventarisController extends Controller
             'tanggal_masuk_stok' => $request->input('tanggal_masuk_stok'),
         ]);
 
-        return redirect()->route('inventaris.index');
+        return redirect()->route('inventaris.index')->with('success', 'Inventaris berhasil ditambahkan!');
     }
 
     // Menampilkan detail inventaris
@@ -69,13 +69,12 @@ class InventarisController extends Controller
 
         $inventaris->update([
             'nama_barang' => $request->input('nama_barang'),
-            'tanggal_masuk_stok' => $request->input('tanggal_masuk_stok'),
+            'jumlah_stok' => $request->input('jumlah_stok'),
             'lokasi_penyimpanan' => $request->input('lokasi_penyimpanan'),
             'tanggal_masuk_stok' => $request->input('tanggal_masuk_stok'),
         ]);
-        
 
-        return redirect()->route('inventaris.show', $id);
+        return redirect()->route('inventaris.index')->with('success', 'Inventaris berhasil diperbarui!');
     }
 
     // Menampilkan halaman konfirmasi hapus
@@ -92,6 +91,6 @@ class InventarisController extends Controller
         $inventaris = Inventaris::findOrFail($id);
         $inventaris->delete();
 
-        return redirect()->route('inventaris.index');
+        return redirect()->route('inventaris.index')->with('success', 'Inventaris berhasil dihapus!');
     }
 }

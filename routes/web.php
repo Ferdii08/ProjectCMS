@@ -10,7 +10,15 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
+// Halaman Login
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Halaman setelah login
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/upload', [ImageController::class, 'create']);
 Route::post('/upload', [ImageController::class, 'store'])->name('image.upload');
 Route::delete('/upload/{id}', [ImageController::class, 'destroy'])->name('image.delete');
@@ -19,7 +27,7 @@ Route::get('/pendaftaran-ktp', function () {
     return 'Selamat datang di halaman Pendaftaran KTP Online!';
 })->middleware('check.age');
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/test-notif', function () {
     return redirect()->route('detailtransaksi.index')->with('success', 'Notifikasi test berhasil!');

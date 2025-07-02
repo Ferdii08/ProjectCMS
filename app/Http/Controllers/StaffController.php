@@ -40,7 +40,7 @@ class StaffController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('staff.index');
+        return redirect()->route('staff.index')->with('success', 'Staff berhasil ditambahkan!');
     }
 
     // Menampilkan detail staff
@@ -78,7 +78,7 @@ class StaffController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('staff.show', $id);
+        return redirect()->route('staff.index')->with('success', 'Staff berhasil diperbarui!');
     }
 
     // Menampilkan halaman konfirmasi hapus
@@ -94,6 +94,6 @@ class StaffController extends Controller
         $staff = Staff::findOrFail($id);
         $staff->delete();
 
-        return redirect()->route('staff.index');
+        return redirect()->route('staff.index')->with('success', 'Staff berhasil dihapus!');
     }
 }
