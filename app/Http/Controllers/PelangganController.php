@@ -78,7 +78,7 @@ class PelangganController extends Controller
             $pelanggan = Pelanggan::findOrFail($id);
 
             $validated = $request->validate([
-                'nama' => 'required|string|max:255',
+                'nama' => 'required|string|max:555',
                 'no_telepon' => 'required|string|max:20',
                 'alamat' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:pelanggans,email,' . $id,
