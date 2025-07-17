@@ -12,7 +12,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('login'); // Pastikan resources/views/login.blade.php tersedia
+        return view('login'); 
     }
 
     /**
